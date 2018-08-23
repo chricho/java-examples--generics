@@ -39,4 +39,39 @@ public class Test {
         assertThat(carDictionary.get("N-AD-666").getDriver(), is(equalTo("cch")));
     }
 
+    @org.junit.Test
+    public void shouldNotContainMapping() {
+        carDictionary.remove("N-AD-123");
+        carDictionary.remove("N-AD-1");
+        carDictionary.remove("N-AD-5");
+        carDictionary.remove("N-AD-666");
+
+        assertThat(carDictionary.size(), is(equalTo(0)));
+        assertThat(carDictionary.get("N-AD-123"), is(equalTo(null)));
+        assertThat(carDictionary.get("N-AD-1"), is(equalTo(null)));
+        assertThat(carDictionary.get("N-AD-5"), is(equalTo(null)));
+        assertThat(carDictionary.get("N-AD-666"), is(equalTo(null)));
+    }
+
+    @org.junit.Test
+    public void shouldBeEmptyAfterRemovingAllElements() {
+        carDictionary.remove("N-AD-123");
+        carDictionary.remove("N-AD-1");
+        carDictionary.remove("N-AD-5");
+        carDictionary.remove("N-AD-666");
+
+        assertThat(carDictionary.size(), is(equalTo(0)));
+        assertThat(carDictionary.isEmpty(), is(equalTo(true)));
+    }
+
+    @org.junit.Test
+    public void shouldNotBeEmptyAfterRemovingOneElement() {
+        carDictionary.remove("N-AD-123");
+
+
+        assertThat(carDictionary.size(), is(equalTo(3)));
+        assertThat(carDictionary.isEmpty(), is(equalTo(false)));
+        assertThat(carDictionary.get("N-AD-1").getDriver(), is(equalTo("fpo")));
+    }
+
 }
