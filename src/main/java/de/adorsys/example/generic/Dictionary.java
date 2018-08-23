@@ -1,23 +1,14 @@
 package de.adorsys.example.generic;
 
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
-public class Dictionary<K, V> {
+public class Dictionary<K, V> implements Map<K, V> {
 
-    private final List<Entry<K, V>> entries = new MyArrayList<>();
+    private final List<DictionaryEntry<K, V>> entries = new MyArrayList<>();
 
-
-    public void add(K key, V value) {
-        Entry<K, V> entry = new Entry<>();
-        entry.key = key;
-        entry.value = value;
-
-        entries.add(entry);
-    }
 
     public V get(int index) {
-        Entry<K, V> entry = entries.get(index);
+        DictionaryEntry<K, V> entry = entries.get(index);
         return entry.value;
     }
 
@@ -25,14 +16,30 @@ public class Dictionary<K, V> {
         return entries.size();
     }
 
-    public V search(String s) {
-        Iterator<Entry<K, V>> carIterator = entries.iterator();
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public boolean containsKey(Object key) {
+        return false;
+    }
+
+    @Override
+    public boolean containsValue(Object value) {
+        return false;
+    }
+
+    @Override
+    public V get(Object key) {
+        Iterator<DictionaryEntry<K, V>> carIterator = entries.iterator();
 
         while(carIterator.hasNext()){
-            Entry<K, V> foundEntry = carIterator.next();
+            DictionaryEntry<K, V> foundEntry = carIterator.next();
             K identifier = foundEntry.key;
 
-            if(identifier.equals(s)){
+            if(identifier.equals(key)){
                 return foundEntry.value;
             }
         }
@@ -40,15 +47,53 @@ public class Dictionary<K, V> {
         return null;
     }
 
+    @Override
+    public V put(K key, V value) {
+        DictionaryEntry<K, V> entry = new DictionaryEntry<>();
+        entry.key = key;
+        entry.value = value;
 
-    public void remove(String s) {
-        Iterator<Entry<K, V>> carIterator = entries.iterator();
+        entries.add(entry);
+
+        return null;
+    }
+
+    @Override
+    public V remove(Object key) {
+        Iterator<DictionaryEntry<K, V>> carIterator = entries.iterator();
         while(carIterator.hasNext()){
-            Entry<K, V> foundEntry = carIterator.next();
+            DictionaryEntry<K, V> foundEntry = carIterator.next();
             K identifier = foundEntry.key;
-            if(identifier.equals(s)){
+            if(identifier.equals(key)){
                 entries.remove(foundEntry);
             }
         }
+
+        return null;
+    }
+
+    @Override
+    public void putAll(Map<? extends K, ? extends V> m) {
+
+    }
+
+    @Override
+    public void clear() {
+
+    }
+
+    @Override
+    public Set<K> keySet() {
+        return null;
+    }
+
+    @Override
+    public Collection<V> values() {
+        return null;
+    }
+
+    @Override
+    public Set<Entry<K, V>> entrySet() {
+        return null;
     }
 }

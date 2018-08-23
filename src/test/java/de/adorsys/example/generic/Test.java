@@ -15,16 +15,16 @@ public class Test {
     public void setup() {
         carDictionary = new Dictionary<>();
 
-        carDictionary.add("N-AD-123", new Car("N-AD-123", "fst", "BMW 3er"));
-        carDictionary.add("N-AD-1", new Car("N-AD-1", "fpo", "Porsche Cayenne"));
-        carDictionary.add("N-AD-5", new Car("N-AD-5", "kts", "Mercedes E-Klasse"));
-        carDictionary.add("N-AD-666", new Car("N-AD-666", "cch", "VW Golf 7"));
+        carDictionary.put("N-AD-123", new Car("N-AD-123", "fst", "BMW 3er"));
+        carDictionary.put("N-AD-1", new Car("N-AD-1", "fpo", "Porsche Cayenne"));
+        carDictionary.put("N-AD-5", new Car("N-AD-5", "kts", "Mercedes E-Klasse"));
+        carDictionary.put("N-AD-666", new Car("N-AD-666", "cch", "VW Golf 7"));
     }
 
 
     @org.junit.Test
     public void shouldFindCarByIdentifier() {
-        Car foundCar = carDictionary.search("N-AD-123");
+        Car foundCar = carDictionary.get("N-AD-123");
 
         assertThat(foundCar.getDriver(), is(equalTo("fst")));
     }
@@ -34,9 +34,9 @@ public class Test {
         carDictionary.remove("N-AD-123");
 
         assertThat(carDictionary.size(), is(equalTo(3)));
-        assertThat(carDictionary.get(0).getIdentifier(), is(equalTo("N-AD-1")));
-        assertThat(carDictionary.get(1).getIdentifier(), is(equalTo("N-AD-5")));
-        assertThat(carDictionary.get(2).getIdentifier(), is(equalTo("N-AD-666")));
+        assertThat(carDictionary.get("N-AD-1").getDriver(), is(equalTo("fpo")));
+        assertThat(carDictionary.get("N-AD-5").getDriver(), is(equalTo("kts")));
+        assertThat(carDictionary.get("N-AD-666").getDriver(), is(equalTo("cch")));
     }
 
 }

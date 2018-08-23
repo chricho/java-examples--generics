@@ -1,6 +1,6 @@
 package de.adorsys.example.generic;
 
-class Entry<K, V> {
+class DictionaryEntry<K, V> {
    K key;
    V value;
 
