@@ -6,7 +6,7 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
 
-public class Test {
+public class DictionaryTest {
 
     private Dictionary<String, Car> carDictionary;
 
@@ -72,6 +72,23 @@ public class Test {
         assertThat(carDictionary.size(), is(equalTo(3)));
         assertThat(carDictionary.isEmpty(), is(equalTo(false)));
         assertThat(carDictionary.get("N-AD-1").getDriver(), is(equalTo("fpo")));
+    }
+
+    @org.junit.Test
+    public void shouldNotContainsKey() {
+        assertThat(carDictionary.containsKey("irgendwas was es einfach nicht gibt, ne?"), is(equalTo(false)));
+    }
+
+    @org.junit.Test
+    public void shouldNotContainKeyAfterRemoving() {
+        carDictionary.remove("N-AD-123");
+        assertThat(carDictionary.containsKey("N-AD-123"), is(equalTo(false)));
+    }
+
+    @org.junit.Test
+    public void shouldContainKeyAfterAdding() {
+        carDictionary.put("N-AD-12", new Car("N-AD-12", "bsk", "Audi A6"));
+        assertThat(carDictionary.containsKey("N-AD-12"), is(equalTo(true)));
     }
 
 }
