@@ -74,4 +74,20 @@ public class Test {
         assertThat(carDictionary.get("N-AD-1").getDriver(), is(equalTo("fpo")));
     }
 
+    @org.junit.Test
+    public void shouldNotContainElementAfterRemoving() {
+        carDictionary.remove("N-AD-123");
+
+        assertThat(carDictionary.size(), is(equalTo(3)));
+        assertThat(carDictionary.containsKey("N-AD-123"), is(equalTo(false)));
+    }
+
+    @org.junit.Test
+    public void shouldContainElementAfterAdding() {
+        carDictionary.put("N-AD-12", new Car("N-AD-12", "bsk", "Audi A6"));
+
+        assertThat(carDictionary.size(), is(equalTo(5)));
+        assertThat(carDictionary.containsKey("N-AD-12"), is(equalTo(true)));
+    }
+
 }
