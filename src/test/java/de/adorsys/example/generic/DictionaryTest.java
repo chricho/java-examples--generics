@@ -6,7 +6,7 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
 
-public class Test {
+public class DictionaryTest {
 
     private Dictionary<String, Car> carDictionary;
 

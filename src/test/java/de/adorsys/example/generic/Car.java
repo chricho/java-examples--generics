@@ -1,5 +1,7 @@
 package de.adorsys.example.generic;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 public class Car {
     private final String identifier;
     private final String driver;
@@ -21,5 +23,24 @@ public class Car {
 
     public String getModel() {
         return model;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(this == o) {
+            return true;
+        }
+
+        if(o instanceof Car) {
+            Car otherCar = (Car) o;
+            return this.identifier.equals(otherCar.identifier) && this.driver.equals(otherCar.driver) && this.model.equals(otherCar.model);
+        }
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        throw new NotImplementedException();
     }
 }
