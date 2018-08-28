@@ -14,6 +14,7 @@ public class CarTest {
         Car other = car;
 
         assertThat(car.equals(other), is(equalTo(true)));
+        assertThat(car.hashCode() == other.hashCode(), is(equalTo(true)));
     }
 
     @Test
@@ -22,6 +23,7 @@ public class CarTest {
         Car other = new Car("N-AD-12", "fst", "BWM 3er");
 
         assertThat(car.equals(other), is(equalTo(true)));
+        assertThat(car.hashCode() == other.hashCode(), is(equalTo(true)));
     }
 
     @Test
@@ -30,6 +32,7 @@ public class CarTest {
         Car other = new Car(new String("N-AD-12"), new String("fst"), new String("BWM 3er"));
 
         assertThat(car.equals(other), is(equalTo(true)));
+        assertThat(car.hashCode() == other.hashCode(), is(equalTo(true)));
     }
 
     @Test
@@ -38,6 +41,7 @@ public class CarTest {
         Car other = new Car("N-AD-1", "fst", "BMW 3er");
 
         assertThat(car.equals(other), is(equalTo(false)));
+        assertThat(car.hashCode() == other.hashCode(), is(equalTo(false)));
     }
 
     @Test
@@ -45,6 +49,7 @@ public class CarTest {
         Car car = new Car("N-AD-12", "fst", "BMW 3er");
 
         assertThat(car.equals("N-AD-12"), is(equalTo(false)));
+        assertThat(car.hashCode() == "N-AD-12".hashCode(), is(equalTo(false)));
     }
 
     @Test
@@ -52,6 +57,7 @@ public class CarTest {
         Car car = new Car("N-AD-12", "fst", "BMW 3er");
 
         assertThat(car.equals(new Object()), is(equalTo(false)));
+        assertThat(car.hashCode() == new Object().hashCode(), is(equalTo(false)));
     }
 
     @Test
@@ -68,4 +74,6 @@ public class CarTest {
 
         assertThat(car.equals(nullCar), is(equalTo(false)));
     }
+
+
 }

@@ -1,6 +1,7 @@
 package de.adorsys.example.generic;
 
 import org.junit.Before;
+import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
@@ -75,7 +76,7 @@ public class DictionaryTest {
     }
 
     @org.junit.Test
-    public void shouldNotContainElementAfterRemoving() {
+    public void shouldNotContainKeyAfterRemoving() {
         carDictionary.remove("N-AD-123");
 
         assertThat(carDictionary.size(), is(equalTo(3)));
@@ -83,11 +84,25 @@ public class DictionaryTest {
     }
 
     @org.junit.Test
-    public void shouldContainElementAfterAdding() {
+    public void shouldContainKeyAfterAdding() {
         carDictionary.put("N-AD-12", new Car("N-AD-12", "bsk", "Audi A6"));
 
         assertThat(carDictionary.size(), is(equalTo(5)));
         assertThat(carDictionary.containsKey("N-AD-12"), is(equalTo(true)));
     }
 
+    @Test
+    public void shouldContainValueAfterAdding() {
+        carDictionary.put("N-AD-12", new Car("N-AD-12", "bsk", "Audi A6"));
+
+        assertThat(carDictionary.containsValue(new Car("N-AD-12", "bsk", "Audi A6")), is(equalTo(true)));
+    }
+
+    @Test
+    public void shouldNotContainValueAfterRemoving() {
+        carDictionary.remove("N-AD-123");
+        Car carToCheck = new Car("N-AD-123", "fst", "BMW 3er");
+
+        assertThat(carDictionary.containsValue(carToCheck), is(equalTo(false)));
+    }
 }

@@ -31,6 +31,12 @@ public class Dictionary<K, V> implements Map<K, V> {
 
     @Override
     public boolean containsValue(Object value) {
+        for (int i = 0; i < entries.size(); i++){
+            DictionaryEntry<K, V> entry = entries.get(i);
+            if(entry.value.equals(value)){
+                return true;
+            }
+        }
         return false;
     }
 

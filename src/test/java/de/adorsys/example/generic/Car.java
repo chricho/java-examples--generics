@@ -1,8 +1,8 @@
 package de.adorsys.example.generic;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 public class Car {
+
+    private static final int HASHCODE_OFFSET = -639365053;
     private final String identifier;
     private final String driver;
     private final String model;
@@ -41,6 +41,9 @@ public class Car {
 
     @Override
     public int hashCode() {
-        throw new NotImplementedException();
+        int result = HASHCODE_OFFSET + identifier.hashCode();
+        result = 31 * result + driver.hashCode();
+        result = 31 * result + model.hashCode();
+        return result;
     }
 }
