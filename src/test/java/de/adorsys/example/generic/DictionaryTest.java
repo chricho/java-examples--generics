@@ -105,4 +105,10 @@ public class DictionaryTest {
 
         assertThat(carDictionary.containsValue(carToCheck), is(equalTo(false)));
     }
+
+    @Test
+    public void shouldBeClearAfterRemovingAllElements() {
+        carDictionary.clear();
+        assertThat(carDictionary.isEmpty(), is(equalTo(true)));
+    }
 }

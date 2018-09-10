@@ -88,7 +88,7 @@ public class Dictionary<K, V> implements Map<K, V> {
 
     @Override
     public void clear() {
-
+            entries.clear();
     }
 
     @Override
